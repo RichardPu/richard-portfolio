@@ -247,7 +247,6 @@ const Hero = ({ reduceMotion }: { reduceMotion?: boolean }) => (
       className="dot-grid absolute inset-0 -z-10 opacity-40"
       style={{ maskImage: 'radial-gradient(ellipse at 30% 20%, black, transparent 70%)' }}
     />
-
     <div className="hero-content grid grid-cols-1 md:grid-cols-[1.15fr_0.85fr] gap-12 sm:gap-14 md:gap-24 items-center">
       <motion.div
         initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
@@ -255,14 +254,18 @@ const Hero = ({ reduceMotion }: { reduceMotion?: boolean }) => (
         transition={{ duration: reduceMotion ? 0 : 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="pl-4" style={{ borderLeft: '2px solid var(--accent)' }}>
-          <p className="text-base sm:text-lg font-medium" style={{ color: 'var(--text)' }}>
-            Available for Winter 2027 co-op (Jan–Apr).
-          </p>
-          <p className="mt-1 text-sm sm:text-base italic" style={{ color: 'var(--text-soft)' }}>
+          {CONFIG.AVAILABLE_FOR_WORK && (
+            <p className="text-base sm:text-lg font-medium" style={{ color: 'var(--text)' }}>
+              Available for Winter 2027 co-op (Jan–Apr).
+            </p>
+          )}
+          <p
+            className={`text-sm sm:text-base italic ${CONFIG.AVAILABLE_FOR_WORK ? 'mt-1' : ''}`}
+            style={{ color: 'var(--text-soft)' }}
+          >
             {CONFIG.EDUCATION.program} student at {CONFIG.EDUCATION.school}.
           </p>
         </div>
-
         <h1
           className="font-display font-semibold text-[clamp(2.75rem,12vw,4.6rem)] leading-[0.98] tracking-tight mt-6"
           style={{ color: 'var(--text)' }}

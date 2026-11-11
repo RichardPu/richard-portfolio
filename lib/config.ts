@@ -45,6 +45,7 @@ export const CONFIG = {
   RESUME_FILE: '/resume.pdf',
   LOCATION: 'Ontario, Canada',
   ROLE: 'Computer Engineering',
+  AVAILABLE_FOR_WORK: false,
   AVAILABILITY: 'Available for Winter 2027 co-op (Jan–Apr)',
   PROFILE_IMAGE_SRC: '/profile.jpg',
   HERO_IMAGE_SRC: '/profile-hero.jpg',

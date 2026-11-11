@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og';
+import { CONFIG } from '../lib/config';
 
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
@@ -7,7 +8,9 @@ export const alt = 'Richard Pu — Computer Engineering Portfolio';
 // Same values as CONFIG in page.tsx — update both places together,
 // or better yet, move CONFIG to a shared file and import it in both.
 const NAME = 'Richard Pu';
-const AVAILABILITY = 'Available for Winter 2027 co-op (Jan–Apr).';
+const AVAILABILITY = CONFIG.AVAILABLE_FOR_WORK
+  ? 'Available for Winter 2027 co-op (Jan–Apr).'
+  : '';
 const EDUCATION_LINE = 'Computer Engineering (BASc Co-op) student at University of Waterloo.';
 const TAGLINE =
   'I work across the whole stack, from circuit-level signalling and embedded firmware to the interactive software that sits on top of it.';
@@ -98,10 +101,12 @@ export default async function Image() {
                 borderLeft: `3px solid ${COLORS.accent}`,
               }}
             >
-              <div style={{ display: 'flex', fontSize: 22, fontWeight: 600, color: COLORS.text, fontFamily: 'Inter-Medium' }}>
-                {AVAILABILITY}
-              </div>
-              <div style={{ display: 'flex', fontSize: 18, marginTop: 6, color: COLORS.textSoft, fontStyle: 'italic' }}>
+              {CONFIG.AVAILABLE_FOR_WORK && (
+                <div style={{ display: 'flex', fontSize: 22, fontWeight: 600, color: COLORS.text, fontFamily: 'Inter-Medium' }}>
+                  {AVAILABILITY}
+                </div>
+              )}
+              <div style={{ display: 'flex', fontSize: 18, marginTop: CONFIG.AVAILABLE_FOR_WORK ? 6 : 0, color: COLORS.textSoft, fontStyle: 'italic' }}>
                 {EDUCATION_LINE}
               </div>
             </div>
